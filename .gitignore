@@ -1,0 +1,65 @@
+*.swp
+# Coverage output
+.coverage
+htmlcov
+# Common
+.bash_*
+.histfile
+.lesshst
+.mysql*
+.profile
+.vim*
+.zsh*
+.zcompdump
+.gnupg/*
+.ssh/*
+.subversion/*
+.vim/*
+.pytest_cache
+.python_history
+.vscode
+.build
+.env
+cleanup/*
+conf
+files/*
+investigations/*
+textfiles/*
+pylib/*
+*.pyc
+*.ini
+*.idea
+bin/nicinfo
+templates/adminify/custom.txt
+.build
+.env
+build/
+dist/
+*.egg-info
+*.eggs
+wheels
+.lint
+.requirements.venv
+requirements.in
+requirements-test.in
+.python-version
+.venv/
+venv
+log.html
+output.xml
+report.html
+jira_export/issues/*
+jira_export/issues.html
+jira_export/issues.yml
+.DS_Store
+
+# Dump files
+*.json
+
+# Makefile targets
+.develop
+.deps-test
+.static
+
+# Testing logs
+*simulated

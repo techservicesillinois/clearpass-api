@@ -1,0 +1,46 @@
+[build-system]
+requires = ["setuptools>=64", "setuptools_scm>=8"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "clearpass-api"
+dynamic = ["version"]
+dependencies = [
+       "requests",
+       "urllib3",
+]
+description = "Client for Aruba Clearpass."
+authors = [
+  {name = "David D. Riddle", email = "ddriddle@illinois.edu"},
+  {name = "Edward Delaport", email = "delaport@illinois.edu"},
+  {name = "Zach Carrington", email = "zdc@illinois.edu"},
+  {name = "Tyler Turner",    email = "tzturner@illinois.edu"},
+  {name = "Michelle Pitcel", email = "mpitcel2@illinois.edu"},
+]
+readme = "README.md"
+license = {text = "NCSA License"}
+keywords = [ "Aruba", "Clearpass", "API" ]
+classifiers = [
+    'Development Status :: 4 - Beta',
+    'Intended Audience :: Developers',
+    'Programming Language :: Python :: 3.8',
+    'Programming Language :: Python :: 3.9',
+    'Programming Language :: Python :: 3.10',
+    'Programming Language :: Python :: 3.11',
+    'Programming Language :: Python :: 3.12',
+]
+requires-python = ">=3.8"
+
+[project.urls]
+Homepage      = "https://github.com/techservicesillinois/clearpass-api"
+"Bug Reports" = "https://github.com/techservicesillinois/clearpass-apiissues"
+Source        = "https://github.com/techservicesillinois/clearpass-api"
+Changelog     = "https://github.com/techservicesillinois/clearpass-api/blob/main/CHANGELOG.md"
+
+[tool.setuptools_scm]
+version_file = "src/clearpass/_version.py"
+local_scheme = "dirty-tag"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["clearpass*"]
