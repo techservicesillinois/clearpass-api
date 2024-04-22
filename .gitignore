@@ -63,3 +63,6 @@ jira_export/issues.yml
 
 # Testing logs
 *simulated
+
+# Setuptools generated files
+_version.py
