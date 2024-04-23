@@ -79,6 +79,14 @@ class APIConnection():
         retjson = res.json()
         return retjson["access_token"]
 
+    def test_connectivity(self):
+        try:
+            self._get_access_token()
+            return True
+        except Exception as e:
+            raise e
+            return False
+
     @property
     def getheaders(self):
         if self._getheaders:
@@ -97,7 +105,6 @@ class APIConnection():
 
         self._postheaders = {'Content-Type': 'application/json'}
         self._postheaders.update(self.getheaders)
-
 
     def _put_api(self, resource, payload):
         return requests.put(

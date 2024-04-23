@@ -1,4 +1,3 @@
-import logging
 import os
 
 import pytest
@@ -8,6 +7,7 @@ from clearpass.client import APIConnection
 
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
+
 
 @pytest.fixture
 def clearpass_client(monkeypatch) -> APIConnection:
@@ -19,7 +19,7 @@ def clearpass_client(monkeypatch) -> APIConnection:
             "clientid": "FAKEID",
             "secret": "NOTASECRET",
         }
-    else: 
+    else:
         env_keys = ['username', 'password', 'endpoint', 'clientid', 'secret']
         kwargs = {}
 
