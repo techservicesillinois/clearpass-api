@@ -50,7 +50,7 @@ def hyphenate_mac(macstring):
 
 
 class APIConnection():
-    def __init__(self, username, password, endpoint, clientid, secret):
+    def __init__(self, username, password, endpoint, client_id, client_secret):
         self._baseurl = f"https://{endpoint}/"
 
         self._authurl = f"{self._baseurl}api/oauth"
@@ -58,8 +58,8 @@ class APIConnection():
             "grant_type": "password",
             "username": username,
             "password": password,
-            "client_id": clientid,
-            "client_secret": secret,
+            "client_id": client_id,
+            "client_secret": client_secret,
         }
 
         self._macinfo = {}
