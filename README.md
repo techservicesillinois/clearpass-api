@@ -17,4 +17,4 @@ End-of-Life was decided upon based on these dependencies:
 
 | Endpoint                                                                            | Purpose                                                | Stage | Access | Contact |
 |-------------------------------------------------------------------------------------|--------------------------------------------------------|-------|--------|--------|
-| https://cplab.techservices.illinois.edu/api/                                   | ClearPass Wireless Monitoring and Management           | Prod  | RW     | See [SecOpsTools Endpoint Connections](https://github.com/techservicesillinois/SecOps-Tools/blob/main/README.md#endpoint-connections) |
+| https://cplab.techservices.illinois.edu/api/                                   | ClearPass Wireless Monitoring and Management           | Dev / Prod | RW     | See [SecOpsTools Endpoint Connections](https://github.com/techservicesillinois/SecOps-Tools/blob/main/README.md#endpoint-connections) |
