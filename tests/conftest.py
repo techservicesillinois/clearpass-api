@@ -1,4 +1,6 @@
+import datetime
 import json
+import jwt
 import os
 
 import pytest
@@ -7,7 +9,6 @@ import vcr
 from clearpass.client import APIConnection
 
 from vcr_cleaner import CleanYAMLSerializer, clean_if
-from vcr_cleaner.cleaners.jwt_token import clean_token
 
 
 CASSETTE_USERNAME = "JOE"
@@ -16,6 +17,9 @@ CASSETTE_ENDPOINT = "cplab.techservices.illinois.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"
 URL = f"https://{CASSETTE_ENDPOINT}"
+
+CLEANER_SALT = 'salty'
+CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
 
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
@@ -47,8 +51,16 @@ def clearpass_client(monkeypatch) -> APIConnection:
 
 @clean_if(uri=f"{URL}/api/oauth")
 def clean_auth(request, response):
-    breakpoint()
     clean_token(request, response)
+
+
+def clean_token(request: dict, response: dict):
+    '''Clean a JWT token.'''
+    jwt_token = jwt.encode(CLEANER_JWT_TOKEN, CLEANER_SALT, algorithm='HS256')
+    if 'Content-Type' in response['headers'].keys() and \
+            response['headers']['Content-Type'] == ['application/json']:
+        token = json.dumps(jwt_token)
+        response['body']['string'] = token
 
 
 def remove_creds(request):
@@ -74,7 +86,6 @@ def cassette(request) -> vcr.cassette.Cassette:
     my_vcr = vcr.VCR(
         cassette_library_dir='cassettes',
         record_mode='once' if VCR_RECORD else 'none',
-        # TODO: Uncomment with remove_creds from shared repo
         before_record_request=remove_creds,
         filter_headers=[('Authorization', 'Bearer FAKE_TOKEN')],
         match_on=['uri', 'method'],
@@ -84,9 +95,8 @@ def cassette(request) -> vcr.cassette.Cassette:
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
     yaml_cleaner.register_cleaner(clean_auth)
-
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
-                             seralizer='cleanyaml') as tape:
+                             serializer='cleanyaml') as tape:
         yield tape
         if my_vcr.record_mode == 'none':  # Tests only valid when not recording
             assert tape.all_played, \
