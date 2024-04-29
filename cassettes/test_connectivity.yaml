@@ -19,7 +19,7 @@ interactions:
     uri: https://cplab.techservices.illinois.edu/api/oauth
   response:
     body:
-      string: '"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1MDgxOTIwMDB9.oZTb-7dlzqHdcWGLXVKmAu6m1JuT2y_gu7I-TYNF6Tk"'
+      string: '{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1MDgxOTIwMDB9.oZTb-7dlzqHdcWGLXVKmAu6m1JuT2y_gu7I-TYNF6Tk"}'
     headers:
       Cache-Control:
       - no-store
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Apr 2024 16:58:04 GMT
+      - Mon, 29 Apr 2024 20:13:13 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -40,7 +40,7 @@ interactions:
       Server:
       - Apache
       Set-Cookie:
-      - GSID=ig9d1gdosehnofl2fkf9hcvp8g; path=/; secure; HttpOnly; SameSite=Lax
+      - GSID=bbpsj4k5odrvh2ufpfaq55nv9u; path=/; secure; HttpOnly; SameSite=Lax
       Vary:
       - X-Forwarded-For
       X-Content-Type-Options:

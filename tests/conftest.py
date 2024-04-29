@@ -59,8 +59,8 @@ def clean_token(request: dict, response: dict):
     jwt_token = jwt.encode(CLEANER_JWT_TOKEN, CLEANER_SALT, algorithm='HS256')
     if 'Content-Type' in response['headers'].keys() and \
             response['headers']['Content-Type'] == ['application/json']:
-        token = json.dumps(jwt_token)
-        response['body']['string'] = token
+        token = {'access_token': jwt_token}
+        response['body']['string'] = json.dumps(token)
 
 
 def remove_creds(request):
@@ -95,6 +95,7 @@ def cassette(request) -> vcr.cassette.Cassette:
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
     yaml_cleaner.register_cleaner(clean_auth)
+
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
                              serializer='cleanyaml') as tape:
         yield tape
