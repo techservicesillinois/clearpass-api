@@ -50,7 +50,7 @@ def hyphenate_mac(macstring):
 
 
 class APIConnection():
-    def __init__(self, username, password, endpoint, clientid, secret):
+    def __init__(self, username, password, endpoint, client_id, client_secret):
         self._baseurl = f"https://{endpoint}/"
 
         self._authurl = f"{self._baseurl}api/oauth"
@@ -58,24 +58,16 @@ class APIConnection():
             "grant_type": "password",
             "username": username,
             "password": password,
-            "client_id": clientid,
-            "client_secret": secret,
+            "client_id": client_id,
+            "client_secret": client_secret,
         }
-        self._postheaders = {'Content-Type': 'application/json'}
 
         self._macinfo = {}
-
-        self._access = self._get_access_token()
-        self._getheaders = {
-            'Accept': 'application/json',
-            'Authorization': f'Bearer {self._access}',
-         }
-        self._postheaders.update(self._getheaders)
 
     def _get_access_token(self):
         res = requests.post(
             url=self._authurl,
-            headers=self._postheaders,
+            headers={'Content-Type': 'application/json'},
             data=json.dumps(self._authpayload),
             verify=False,
         )
@@ -87,10 +79,37 @@ class APIConnection():
         retjson = res.json()
         return retjson["access_token"]
 
+    def test_connectivity(self):
+        try:
+            self._get_access_token()
+            return True
+        except Exception as e:
+            raise e
+            return False
+
+    @property
+    def getheaders(self):
+        if self._getheaders:
+            return self._getheaders
+
+        token = self._get_access_token()
+        self._getheaders = {
+            'Accept': 'application/json',
+            'Authorization': f'Bearer {token}',
+         }
+
+    @property
+    def postheaders(self):
+        if self._postheaders:
+            return self._postheaders
+
+        self._postheaders = {'Content-Type': 'application/json'}
+        self._postheaders.update(self.getheaders)
+
     def _put_api(self, resource, payload):
         return requests.put(
             url=f"{self._baseurl}api/{resource}",
-            headers=self._postheaders,
+            headers=self.postheaders,
             data=json.dumps(payload),
             verify=False,
         )
@@ -102,7 +121,7 @@ class APIConnection():
 
         return requests.get(
             url=url,
-            headers=self._getheaders,
+            headers=self.getheaders,
             verify=False,
         )
 
