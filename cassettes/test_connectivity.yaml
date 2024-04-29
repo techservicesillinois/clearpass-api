@@ -16,7 +16,7 @@ interactions:
       User-Agent:
       - python-requests/2.31.0
     method: POST
-    uri: https://cplab.techservices.illinois.edu/api/oauth
+    uri: https://NOTAURI.edu/api/oauth
   response:
     body:
       string: '{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1MDgxOTIwMDB9.oZTb-7dlzqHdcWGLXVKmAu6m1JuT2y_gu7I-TYNF6Tk"}'
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 29 Apr 2024 20:13:13 GMT
+      - Mon, 29 Apr 2024 20:43:12 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -40,7 +40,7 @@ interactions:
       Server:
       - Apache
       Set-Cookie:
-      - GSID=bbpsj4k5odrvh2ufpfaq55nv9u; path=/; secure; HttpOnly; SameSite=Lax
+      - GSID=uru83i5fltp56df3p9fhjilkhh; path=/; secure; HttpOnly; SameSite=Lax
       Vary:
       - X-Forwarded-For
       X-Content-Type-Options:

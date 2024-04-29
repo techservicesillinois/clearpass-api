@@ -13,7 +13,7 @@ from vcr_cleaner import CleanYAMLSerializer, clean_if
 
 CASSETTE_USERNAME = "JOE"
 CASSETTE_PASSWORD = "NOTAPASSWORD"
-CASSETTE_ENDPOINT = "cplab.techservices.illinois.edu"
+CASSETTE_ENDPOINT = "NOTAURI.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"
 URL = f"https://{CASSETTE_ENDPOINT}"
@@ -81,6 +81,14 @@ def remove_creds(request):
     return request
 
 
+def clean_uri(request: dict, response: dict):
+    if "uri" not in request.keys():
+        return request
+    request['uri'] = request['uri'].replace(
+        os.environ.get("CLEARPASS_ENDPOINT"), CASSETTE_ENDPOINT)
+    return request
+
+
 @pytest.fixture
 def cassette(request) -> vcr.cassette.Cassette:
     my_vcr = vcr.VCR(
@@ -94,6 +102,7 @@ def cassette(request) -> vcr.cassette.Cassette:
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
+    yaml_cleaner.register_cleaner(clean_uri)
     yaml_cleaner.register_cleaner(clean_auth)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
