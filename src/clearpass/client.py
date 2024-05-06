@@ -83,8 +83,7 @@ class APIConnection():
         try:
             self._get_access_token()
             return True
-        except Exception as e:
-            raise e
+        except Exception:
             return False
 
     @property
