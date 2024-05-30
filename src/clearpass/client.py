@@ -4,6 +4,8 @@ import requests
 import json
 import urllib.parse
 
+from clearpass.exceptions import TokenError
+
 # ** Documentation **
 # https://cplab.techservices.illinois.edu/api-docs
 
@@ -75,7 +77,7 @@ class APIConnection():
             logger.warning("Request for authentication returned HTTP "
                            f"{res.status_code}: {res.reason}")
             if res.status_code < 200 or res.status_code > 299:
-                raise Exception("Could not retrieve access token.")
+                raise TokenError()
         retjson = res.json()
         return retjson["access_token"]
 
