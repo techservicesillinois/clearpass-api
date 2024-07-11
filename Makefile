@@ -44,8 +44,10 @@ static: venv .static
 autopep8:
 	autopep8 --in-place $(SRCS)
 
-test: venv lint static
+unit: venv
 	$(VENV_PYTHON) -m pytest
+
+test: lint static unit
 	
 clean:
 	rm -rf venv $(VENV_REQS)
