@@ -4,6 +4,7 @@ autopep8
 coverage
 flake8
 ipdb
+jwt
 mypy
 pre-commit
 pytest
