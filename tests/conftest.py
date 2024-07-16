@@ -42,7 +42,7 @@ def clearpass_client(monkeypatch) -> APIConnection:
 
         for key in env_keys:
             env_key = f"CLEARPASS_{key.upper()}"
-            kwargs[key] = os.environ.get(env_key, None)
+            kwargs[key] = os.environ.get(env_key, "")
             if not kwargs[key]:
                 raise ValueError(f'{env_key} unset or empty with record mode')
 
