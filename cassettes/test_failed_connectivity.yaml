@@ -10,7 +10,7 @@ interactions:
       Connection:
       - keep-alive
       Content-Length:
-      - '238'
+      - '242'
       Content-Type:
       - application/json
       User-Agent:
@@ -19,28 +19,27 @@ interactions:
     uri: https://notauri.edu/api/oauth
   response:
     body:
-      string: '{"access_token": "CLEANED"}'
+      string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"invalid_client","status":400,"detail":"The
+        client credentials are invalid"}'
     headers:
       Cache-Control:
-      - no-store
+      - no-store, no-cache, must-revalidate
       Connection:
-      - Keep-Alive
+      - close
       Content-Length:
-      - '172'
+      - '149'
       Content-Type:
-      - application/json
+      - application/problem+json
       Date:
-      - Mon, 22 Jul 2024 20:38:25 GMT
+      - Mon, 22 Jul 2024 20:37:14 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
-      Keep-Alive:
-      - timeout=4, max=500
       Pragma:
       - no-cache
       Server:
       - Apache
       Set-Cookie:
-      - GSID=3cabr753nknijgm1unpfbv7eqk; path=/; secure; HttpOnly; SameSite=Lax
+      - GSID=5fbr8j09kgrue56mpqc30k1dn8; path=/; secure; HttpOnly; SameSite=Lax
       Vary:
       - X-Forwarded-For
       X-Content-Type-Options:
@@ -48,6 +47,6 @@ interactions:
       X-XSS-Protection:
       - 1;mode=block
     status:
-      code: 200
-      message: OK
+      code: 400
+      message: invalid_client
 version: 1

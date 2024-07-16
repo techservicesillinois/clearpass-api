@@ -1,4 +1,4 @@
-name: test
+name: tests
 
 on:
   push:
@@ -13,10 +13,13 @@ on:
       - released
 
 jobs:
-  build:
+  tests:
+    runs-on: ubuntu-22.04
 
     steps:
     - uses: actions/checkout@v2
+    - name: Install Python
+      uses: actions/setup-python@v5
     - name: Linting
       run: |
         make lint
