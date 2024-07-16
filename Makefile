@@ -27,8 +27,6 @@ requirements-test.txt: requirements-test.in
 	$(VENV_REQS)/bin/python -m pip freeze -qqq > $@
 	sed $(SED_INPLACE) "s;^vcr-cleaner==.*;$(VCR_CLEANER_REPO);" $@
 
-
-
 lint: venv .lint
 .lint: $(SRCS) $(TSCS)
 	$(VENV_PYTHON) -m flake8 $?
