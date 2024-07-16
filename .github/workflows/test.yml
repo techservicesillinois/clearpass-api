@@ -1,0 +1,30 @@
+name: test
+
+on:
+  push:
+    branches:
+      - main
+    tags-ignore:
+      - '**'
+  pull_request:
+  release:
+    types:
+      - edited
+      - released
+
+jobs:
+  build:
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Linting
+      run: |
+        make lint
+
+    - name: Static Testing
+      run: |
+        make static
+
+    - name: Run unit tests
+      run: |
+        make unit
