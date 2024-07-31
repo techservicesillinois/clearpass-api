@@ -1,20 +1,21 @@
-# Put dependencies used by the unit tests in setup.py. This file
 # is for other packages used for testing & development.
+# Put dependencies used by the unit tests in setup.py. This file
 autopep8
 coverage
+detect-secrets
 flake8
 ipdb
 jwt
 mypy
 pre-commit
 pytest
+setuptools-scm
 types-PyMySQL
-types-PyYAML
 types-python-dateutil
 types-pytz
+types-PyYAML
 types-requests
 types-setuptools
 types-simplejson
 types-six
-setuptools-scm
 yq

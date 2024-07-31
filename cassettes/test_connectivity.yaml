@@ -19,7 +19,7 @@ interactions:
     uri: https://NOTAURI.edu/api/oauth
   response:
     body:
-      string: '{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1MDgxOTIwMDB9.oZTb-7dlzqHdcWGLXVKmAu6m1JuT2y_gu7I-TYNF6Tk"}'
+      string: '{"access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjI1MDgxOTIwMDB9.oZTb-7dlzqHdcWGLXVKmAu6m1JuT2y_gu7I-TYNF6Tk"}' # pragma: allowlist secret
     headers:
       Cache-Control:
       - no-store
