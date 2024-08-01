@@ -24,7 +24,11 @@ CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
 
-TEST_DATA = {'mac': 'deadbeef1234'}  # pragma: allowlist secret
+TEST_DATA = {'mac': 'deadbeef1234',  # pragma: allowlist secret
+             'mac_id': 9001,
+             'disabled_by': 'TESTING',
+             'reason': 'Still testing...'
+            }
 
 @pytest.fixture
 def clearpass_client(monkeypatch) -> APIConnection:
