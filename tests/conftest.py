@@ -60,12 +60,9 @@ def clean_auth(request, response):
 
 
 def clean_token(request: dict, response: dict):
-    '''Clean a JWT token.'''
-    jwt_token = jwt.encode(CLEANER_JWT_TOKEN, CLEANER_SALT, algorithm='HS256')
-    if 'Content-Type' in response['headers'].keys() and \
-            response['headers']['Content-Type'] == ['application/json']:
-        token = {'access_token': jwt_token}
-        response['body']['string'] = json.dumps(token)
+    '''Clean a JSON token.'''
+    token = {'access_token': 'NOTASECRET'}
+    response['body']['string'] = json.dumps(token)
 
 
 def remove_creds(request):
