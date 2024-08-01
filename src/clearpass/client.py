@@ -63,6 +63,8 @@ class APIConnection():
             "client_id": client_id,
             "client_secret": client_secret,
         }
+        self._getheaders = None
+        self._postheaders = None
 
         self._macinfo = {}
 
@@ -97,7 +99,8 @@ class APIConnection():
         self._getheaders = {
             'Accept': 'application/json',
             'Authorization': f'Bearer {token}',
-         }
+        }
+        return self._getheaders
 
     @property
     def postheaders(self):
@@ -106,6 +109,7 @@ class APIConnection():
 
         self._postheaders = {'Content-Type': 'application/json'}
         self._postheaders.update(self.getheaders)
+        return self._postheaders
 
     def _put_api(self, resource, payload):
         return requests.put(
