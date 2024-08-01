@@ -5,9 +5,9 @@ coverage
 detect-secrets
 flake8
 ipdb
-jwt
 mypy
 pre-commit
+pyjwt
 pytest
 setuptools-scm
 types-PyMySQL
@@ -18,4 +18,10 @@ types-requests
 types-setuptools
 types-simplejson
 types-six
+urllib3==1.26.19
+setuptools-scm
+vcrpy
+git+https://github.com/techservicesillinois/vcrpy-cleaner.git
 yq
+# Requirements are also here because pyproject.toml and pip are dumb
+requests 

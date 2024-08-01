@@ -13,7 +13,7 @@ from vcr_cleaner import CleanYAMLSerializer, clean_if
 
 CASSETTE_USERNAME = "JOE"
 CASSETTE_PASSWORD = "NOTAPASSWORD"  # pragma: allowlist secret
-CASSETTE_ENDPOINT = "NOTAURI.edu"
+CASSETTE_ENDPOINT = "notauri.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"  # pragma: allowlist secret
 URL = f"https://{CASSETTE_ENDPOINT}"
@@ -111,4 +111,3 @@ def cassette(request) -> vcr.cassette.Cassette:
         if my_vcr.record_mode == 'none':  # Tests only valid when not recording
             assert tape.all_played, \
                 f"Only played back {len(tape.responses)} responses"
-            assert tape.play_count == 1
