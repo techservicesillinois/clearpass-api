@@ -59,6 +59,10 @@ def clean_auth(request, response):
     clean_token(request, response)
 
 
+def clean_cookie(request: dict, response: dict):
+    response['headers']['Set-Cookie'] = 'NO-COOKIE-FOR-YOU'
+
+
 def clean_token(request: dict, response: dict):
     '''Clean a JSON token.'''
     token = {'access_token': 'NOTASECRET'}
@@ -106,6 +110,7 @@ def cassette(request) -> vcr.cassette.Cassette:
     # TODO: Register cleaner functions here:
     yaml_cleaner.register_cleaner(clean_uri)
     yaml_cleaner.register_cleaner(clean_auth)
+    yaml_cleaner.register_cleaner(clean_cookie)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
                              serializer='cleanyaml') as tape:
