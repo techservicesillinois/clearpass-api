@@ -28,7 +28,8 @@ TEST_DATA = {'mac': 'deadbeef1234',  # pragma: allowlist secret
              'mac_id': 9001,
              'disabled_by': 'TESTING',
              'reason': 'Still testing...'
-            }
+             }
+
 
 @pytest.fixture
 def clearpass_client(monkeypatch) -> APIConnection:
