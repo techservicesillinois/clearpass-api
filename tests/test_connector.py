@@ -1,5 +1,6 @@
 from conftest import TEST_DATA
 
+
 def test_connectivity(cassette, clearpass_client):
     assert clearpass_client.test_connectivity()
 
