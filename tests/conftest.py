@@ -1,6 +1,5 @@
 import datetime
 import json
-import jwt
 import os
 
 import pytest
