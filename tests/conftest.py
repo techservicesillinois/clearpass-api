@@ -22,7 +22,7 @@ CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
 
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
-MAC_404 = 'deadbeef1234'
+MAC_404 = 'deadbeef1234'  # pragma: allowlist secret
 TEST_DATA = {'mac': '123123123123',  # pragma: allowlist secret
              'disabled_by': 'TESTING',
              'reason': 'Still testing...'
