@@ -34,3 +34,8 @@ def test_404_enable_mac(cassette, clearpass_client):
     '''Test enable on a MAC that is not found.'''
     with pytest.raises(ValueError):
         clearpass_client.enable_mac_address(mac=MAC_404)
+
+
+def test_get_info_for_mac_address(cassette, clearpass_client):
+    result = clearpass_client.get_info_for_mac_address(mac=TEST_DATA['mac'])
+    assert result
