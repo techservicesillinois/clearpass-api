@@ -1,6 +1,5 @@
 import datetime
 import json
-import jwt
 import os
 
 import pytest
@@ -23,6 +22,11 @@ CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
 
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
+MAC_404 = 'deadbeef1234'  # pragma: allowlist secret
+TEST_DATA = {'mac': '123123123123',  # pragma: allowlist secret
+             'disabled_by': 'TESTING',
+             'reason': 'Still testing...'
+             }
 
 
 @pytest.fixture
@@ -49,18 +53,15 @@ def clearpass_client(monkeypatch) -> APIConnection:
     return APIConnection(**kwargs)
 
 
+def clean_cookie(request: dict, response: dict):
+    response['headers']['Set-Cookie'] = 'NO-COOKIE-FOR-YOU'
+
+
 @clean_if(uri=f"{URL}/api/oauth")
-def clean_auth(request, response):
-    clean_token(request, response)
-
-
 def clean_token(request: dict, response: dict):
-    '''Clean a JWT token.'''
-    jwt_token = jwt.encode(CLEANER_JWT_TOKEN, CLEANER_SALT, algorithm='HS256')
-    if 'Content-Type' in response['headers'].keys() and \
-            response['headers']['Content-Type'] == ['application/json']:
-        token = {'access_token': jwt_token}
-        response['body']['string'] = json.dumps(token)
+    '''Clean a JSON token.'''
+    token = {'access_token': 'NOTASECRET'}
+    response['body']['string'] = json.dumps(token)
 
 
 def remove_creds(request):
@@ -103,7 +104,8 @@ def cassette(request) -> vcr.cassette.Cassette:
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
     yaml_cleaner.register_cleaner(clean_uri)
-    yaml_cleaner.register_cleaner(clean_auth)
+    yaml_cleaner.register_cleaner(clean_token)
+    yaml_cleaner.register_cleaner(clean_cookie)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
                              serializer='cleanyaml') as tape:

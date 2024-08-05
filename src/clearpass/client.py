@@ -63,6 +63,8 @@ class APIConnection():
             "client_id": client_id,
             "client_secret": client_secret,
         }
+        self._getheaders = None
+        self._postheaders = None
 
         self._macinfo = {}
 
@@ -97,7 +99,8 @@ class APIConnection():
         self._getheaders = {
             'Accept': 'application/json',
             'Authorization': f'Bearer {token}',
-         }
+        }
+        return self._getheaders
 
     @property
     def postheaders(self):
@@ -106,6 +109,7 @@ class APIConnection():
 
         self._postheaders = {'Content-Type': 'application/json'}
         self._postheaders.update(self.getheaders)
+        return self._postheaders
 
     def _put_api(self, resource, payload):
         return requests.put(
@@ -158,7 +162,7 @@ class APIConnection():
         try:
             return mac_info["id"]
         except KeyError:
-            raise Exception(f"MAC address {mac} not found on server")
+            raise ValueError(f"MAC address {mac} not found on server")
 
     def set_mac_address(
             self, mac_id, mac, status, description=None, attributes=None):
@@ -174,12 +178,21 @@ class APIConnection():
             data["attributes"] = attributes
         return self._put_api(f"endpoint/{mac_id}", data)
 
-    def enable_mac_address(self, mac, mac_id):
-        return self.set_mac_address(mac_id, mac, status="Known")
+    def enable_mac_address(self, mac):
+        mac_id = self.get_mac_id(mac)
+        res = self.set_mac_address(mac_id, mac, status="Known")
+        if res.status_code == 404:
+            raise ValueError(f"{mac} not found.")
+        return res
 
-    def disable_mac_address(self, mac, mac_id, disabled_by, reason):
-        return self.set_mac_address(mac_id, mac, status="Disabled",
-                                    attributes={
-                                      "Disabled By": disabled_by,
-                                      "Disabled Reason": reason
-                                    })
+    def disable_mac_address(self, mac, disabled_by, reason):
+        mac_id = self.get_mac_id(mac)
+        res = self.set_mac_address(
+            mac_id, mac, status="Disabled",
+            attributes={
+                "Disabled By": disabled_by,
+                "Disabled Reason": reason
+            })
+        if res.status_code == 404:
+            raise ValueError(f"{mac} not found.")
+        return res
