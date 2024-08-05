@@ -121,7 +121,7 @@ interactions:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
         By":"TESTING","Disabled Reason":"Still testing..."},"added_at":"Nov 15, 2023
-        14:52:34 CST","updated_at":"Aug 05, 2024 11:31:45 CDT","_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint\/4524"}}}'
+        14:52:34 CST","updated_at":"Aug 05, 2024 11:31:45 CDT","stuff":"deleted"}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
