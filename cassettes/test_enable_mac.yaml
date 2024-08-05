@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 01 Aug 2024 20:58:54 GMT
+      - Mon, 05 Aug 2024 16:27:31 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -50,7 +50,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"id": 9001, "mac_address": "deadbeef1234", "status": "Known"}'
+    body: null
     headers:
       Accept:
       - application/json
@@ -60,29 +60,26 @@ interactions:
       - Bearer FAKE_TOKEN
       Connection:
       - keep-alive
-      Content-Length:
-      - '62'
-      Content-Type:
-      - application/json
       User-Agent:
       - python-requests/2.32.3
-    method: PUT
-    uri: https://notauri.edu/api/endpoint/9001
+    method: GET
+    uri: https://notauri.edu/api/endpoint/mac-address/123123123123
   response:
     body:
-      string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Not
-        Found","status":404,"detail":"Object not found"}'
+      string: '{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
+        By":"automation","Disabled Reason":"Disabled"},"added_at":"Nov 15, 2023 14:52:34
+        CST","updated_at":"Mar 28, 2024 15:31:54 CDT","stuff":"deleted"}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
       Connection:
       - Keep-Alive
       Content-Length:
-      - '126'
+      - '325'
       Content-Type:
-      - application/problem+json
+      - application/hal+json
       Date:
-      - Thu, 01 Aug 2024 20:58:54 GMT
+      - Mon, 05 Aug 2024 16:27:31 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -99,6 +96,58 @@ interactions:
       X-XSS-Protection:
       - 1;mode=block
     status:
-      code: 404
-      message: Not Found
+      code: 200
+      message: OK
+- request:
+    body: '{"id": 4524, "mac_address": "123123123123", "status": "Known"}'
+    headers:
+      Accept:
+      - application/json
+      Accept-Encoding:
+      - gzip, deflate
+      Authorization:
+      - Bearer FAKE_TOKEN
+      Connection:
+      - keep-alive
+      Content-Length:
+      - '62'
+      Content-Type:
+      - application/json
+      User-Agent:
+      - python-requests/2.32.3
+    method: PUT
+    uri: https://notauri.edu/api/endpoint/4524
+  response:
+    body:
+      string: '{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
+        15, 2023 14:52:34 CST","updated_at":"Aug 05, 2024 11:27:32 CDT","_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint\/4524"}}}'
+    headers:
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Connection:
+      - Keep-Alive
+      Content-Length:
+      - '267'
+      Content-Type:
+      - application/hal+json
+      Date:
+      - Mon, 05 Aug 2024 16:27:32 GMT
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Keep-Alive:
+      - timeout=4, max=500
+      Pragma:
+      - no-cache
+      Server:
+      - Apache
+      Set-Cookie: NO-COOKIE-FOR-YOU
+      Vary:
+      - X-Forwarded-For
+      X-Content-Type-Options:
+      - nosniff
+      X-XSS-Protection:
+      - 1;mode=block
+    status:
+      code: 200
+      message: OK
 version: 1
