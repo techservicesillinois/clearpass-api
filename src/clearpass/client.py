@@ -179,11 +179,17 @@ class APIConnection():
         return self._put_api(f"endpoint/{mac_id}", data)
 
     def enable_mac_address(self, mac, mac_id):
-        return self.set_mac_address(mac_id, mac, status="Known")
+        res = self.set_mac_address(mac_id, mac, status="Known")
+        if res.status_code == 404:
+            raise ValueError(f"{mac} not found.")
+        return res
 
     def disable_mac_address(self, mac, mac_id, disabled_by, reason):
-        return self.set_mac_address(mac_id, mac, status="Disabled",
+        res = self.set_mac_address(mac_id, mac, status="Disabled",
                                     attributes={
                                       "Disabled By": disabled_by,
                                       "Disabled Reason": reason
                                     })
+        if res.status_code == 404:
+            raise ValueError(f"{mac} not found.")
+        return res
