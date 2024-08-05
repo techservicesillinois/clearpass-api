@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 01 Aug 2024 20:58:54 GMT
+      - Mon, 05 Aug 2024 16:40:44 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -50,7 +50,7 @@ interactions:
       code: 200
       message: OK
 - request:
-    body: '{"id": 9001, "mac_address": "deadbeef1234", "status": "Known"}'
+    body: null
     headers:
       Accept:
       - application/json
@@ -60,14 +60,10 @@ interactions:
       - Bearer FAKE_TOKEN
       Connection:
       - keep-alive
-      Content-Length:
-      - '62'
-      Content-Type:
-      - application/json
       User-Agent:
       - python-requests/2.32.3
-    method: PUT
-    uri: https://notauri.edu/api/endpoint/9001
+    method: GET
+    uri: https://notauri.edu/api/endpoint/mac-address/deadbeef1234
   response:
     body:
       string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Not
@@ -82,7 +78,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Thu, 01 Aug 2024 20:58:54 GMT
+      - Mon, 05 Aug 2024 16:40:44 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
