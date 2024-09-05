@@ -3,5 +3,5 @@ __all__ = [
     "exceptions"
 ]
 
-# import clearpass.client
-# import clearpass.exceptions
+import clearpass.client
+import clearpass.exceptions
