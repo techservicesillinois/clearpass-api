@@ -1,8 +1,14 @@
+import json
 import logging
 import re
 import requests
-import json
-import urllib.parse
+
+from urllib.parse import (
+    SplitResult,
+    quote,
+    urlencode,
+    urlunsplit,
+)
 
 from clearpass.exceptions import TokenError
 
@@ -54,6 +60,7 @@ def hyphenate_mac(macstring):
 class APIConnection():
     def __init__(self, username, password, endpoint, client_id, client_secret):
         self._baseurl = f"https://{endpoint}/"
+        self._endpoint = endpoint
 
         self._authurl = f"{self._baseurl}api/oauth"
         self._authpayload = {
@@ -111,19 +118,36 @@ class APIConnection():
         self._postheaders.update(self.getheaders)
         return self._postheaders
 
-    def _put_api(self, resource, payload):
+    def _put_api(self, resource, **kwargs):
         return requests.put(
             url=f"{self._baseurl}api/{resource}",
             headers=self.postheaders,
-            data=json.dumps(payload),
             verify=False,
+            **kwargs
         )
 
-    def _get_api(self, resource, filter=None):
-        url = f"{self._baseurl}api/{resource}"
-        if filter:
-            url += f"?filter={urllib.parse.quote(json.dumps(filter))}"
+    def _post_api(self, resource, **kwargs):
+        return requests.post(
+            url=f"{self._baseurl}api/{resource}",
+            headers=self.postheaders,
+            verify=False,
+            **kwargs
+        )
 
+    def _get_api(self, resource, **kwargs):
+        url = f"{self._baseurl}api/{resource}"
+
+        params = {}
+        for parameter, value in kwargs.items():
+            if value is not None:
+                params[parameter] = json.dumps(value)
+        url = urlunsplit(SplitResult(
+            scheme="https",
+            netloc=f"{self._endpoint}",
+            path=f"api/{resource}",
+            query=urlencode(params, quote_via=quote),
+            fragment=None,
+        ))
         return requests.get(
             url=url,
             headers=self.getheaders,
@@ -176,14 +200,13 @@ class APIConnection():
 
         if attributes is not None:
             data["attributes"] = attributes
-        return self._put_api(f"endpoint/{mac_id}", data)
+        return self._put_api(f"endpoint/{mac_id}", json=data)
 
     def enable_mac_address(self, mac):
         mac_id = self.get_mac_id(mac)
         res = self.set_mac_address(mac_id, mac, status="Known")
-        if res.status_code == 404:
-            raise ValueError(f"{mac} not found.")
-        return res
+        logger.debug(f'Enable mac ({mac}) result: {res.text}')
+        res.raise_for_status()
 
     def disable_mac_address(self, mac, disabled_by, reason):
         mac_id = self.get_mac_id(mac)
@@ -193,6 +216,15 @@ class APIConnection():
                 "Disabled By": disabled_by,
                 "Disabled Reason": reason
             })
-        if res.status_code == 404:
-            raise ValueError(f"{mac} not found.")
-        return res
+
+        logger.debug(f'Disable mac ({mac}) result: {res.text}')
+        res.raise_for_status()
+
+    def disconnect_mac_address(self, mac):
+        res = self._post_api(
+            f"session-action/disconnect/mac/{mac}?async=false",
+            json={}
+        )
+        logger.debug(f'Disconnect mac ({mac}) result: {res.text}')
+        res.raise_for_status()
+        return res.json().get('count_success')

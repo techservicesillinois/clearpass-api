@@ -7,9 +7,8 @@ import vcr
 import logging
 
 from clearpass.client import APIConnection
-from vcr_cleaner import CleanYAMLSerializer
-from vcr_cleaner.filters import if_uri_endswith
-from vcr_cleaner.cleaners.uri import clean_domains
+from vcr_cleaner import CleanYAMLSerializer, filters
+from vcr_cleaner.cleaners import uri
 
 # Set up logger
 logger = logging.getLogger(__name__)
@@ -19,6 +18,7 @@ CASSETTE_PASSWORD = "NOTAPASSWORD"  # pragma: allowlist secret
 CASSETTE_ENDPOINT = "cleaned.example.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"  # pragma: allowlist secret
+URL = f"https://{CASSETTE_ENDPOINT}"
 
 CLEANER_SALT = 'salty'
 CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
@@ -26,10 +26,11 @@ CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
 # To record, `export VCR_RECORD=True`
 VCR_RECORD = "VCR_RECORD" in os.environ
 MAC_404 = 'deadbeef1234'  # pragma: allowlist secret
-TEST_DATA = {'mac': '123123123123',  # pragma: allowlist secret
-             'disabled_by': 'TESTING',
-             'reason': 'Still testing...'
-             }
+TEST_DATA = {
+    'mac': '123123123123',  # pragma: allowlist secret
+    'disabled_by': 'TESTING',
+    'reason': 'Still testing...'
+}
 
 
 @pytest.fixture
@@ -93,6 +94,14 @@ def remove_creds(request):
     return request
 
 
+def clean_test_mac(request: dict, response: dict):
+    test_mac = os.environ.get('CLEARPASS_MAC', '')
+    request['uri'] = request['uri'].replace(test_mac, TEST_DATA['mac'])
+    response['body']['string'] = (
+        response['body']['string'].replace(test_mac, TEST_DATA['mac'])
+    )
+
+
 @pytest.fixture
 def cassette(request) -> vcr.cassette.Cassette:
     my_vcr = vcr.VCR(
@@ -105,9 +114,17 @@ def cassette(request) -> vcr.cassette.Cassette:
 
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
-    yaml_cleaner.register_cleaner(clean_domains('illinois.edu'))
-    yaml_cleaner.register_cleaner(if_uri_endswith("/api/oauth", clean_token))
+    yaml_cleaner.register_cleaner(uri.clean_domains(
+            os.environ.get("CLEARPASS_ENDPOINT", CASSETTE_ENDPOINT),
+            CASSETTE_ENDPOINT,
+        )
+    )
+    yaml_cleaner.register_cleaner(filters.if_uri_contains(
+        f"{URL}/api/oauth",
+        clean_token),
+    )
     yaml_cleaner.register_cleaner(clean_cookie)
+    yaml_cleaner.register_cleaner(clean_test_mac)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
                              serializer='cleanyaml') as tape:
