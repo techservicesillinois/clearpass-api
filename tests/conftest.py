@@ -8,7 +8,7 @@ import vcr
 from clearpass.client import APIConnection
 
 from vcr_cleaner import CleanYAMLSerializer
-# from vcr_cleaner.filters import if_uri_endswith
+from vcr_cleaner.filters import if_uri_contains
 
 
 CASSETTE_USERNAME = "JOE"
@@ -58,12 +58,6 @@ def clean_cookie(request: dict, response: dict):
     response['headers']['Set-Cookie'] = 'NO-COOKIE-FOR-YOU'
 
 
-def clean_token(request: dict, response: dict):
-    '''Clean a JSON token.'''
-    token = {'access_token': 'NOTASECRET'}
-    response['body']['string'] = json.dumps(token)
-
-
 def remove_creds(request):
     if not request.body:
         return request
@@ -103,11 +97,16 @@ def cassette(request) -> vcr.cassette.Cassette:
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
-    yaml_cleaner.register_cleaner(clean_uri)
+    # yaml_cleaner.register_cleaner(clean_uri)
+    # yaml_cleaner.register_cleaner(clean_cookie)
 
-    # yaml_cleaner.register_cleaner(if_uri_endswith('/api/oauth', clean_token))
+    def clean_token(request: dict, response: dict):
+        '''Clean a JSON token.'''
+        token = {'access_token': 'NOTASECRET'}
+        response['body']['string'] = json.dumps(token)
 
-    yaml_cleaner.register_cleaner(clean_cookie)
+    # Updated:
+    yaml_cleaner.register_cleaner(if_uri_contains('/api/oauth', clean_token))
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
                              serializer='cleanyaml') as tape:
