@@ -7,7 +7,8 @@ import vcr
 
 from clearpass.client import APIConnection
 
-from vcr_cleaner import CleanYAMLSerializer, clean_if
+from vcr_cleaner import CleanYAMLSerializer
+# from vcr_cleaner.filters import if_uri_endswith
 
 
 CASSETTE_USERNAME = "JOE"
@@ -57,7 +58,6 @@ def clean_cookie(request: dict, response: dict):
     response['headers']['Set-Cookie'] = 'NO-COOKIE-FOR-YOU'
 
 
-@clean_if(uri=f"{URL}/api/oauth")
 def clean_token(request: dict, response: dict):
     '''Clean a JSON token.'''
     token = {'access_token': 'NOTASECRET'}
@@ -104,7 +104,9 @@ def cassette(request) -> vcr.cassette.Cassette:
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     # TODO: Register cleaner functions here:
     yaml_cleaner.register_cleaner(clean_uri)
-    yaml_cleaner.register_cleaner(clean_token)
+
+    # yaml_cleaner.register_cleaner(if_uri_endswith('/api/oauth', clean_token))
+
     yaml_cleaner.register_cleaner(clean_cookie)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',
