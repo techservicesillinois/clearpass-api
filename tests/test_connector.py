@@ -8,6 +8,8 @@ def test_connectivity(cassette, clearpass_client):
 
 def test_failed_connectivity(cassette, clearpass_client):
     result = clearpass_client.test_connectivity()
+    # This cassette is handcrafted. Expect a failure if you use valid
+    # credentials. Expect to lock yourself out if you use invalid credentials.
     assert result is False
 
 

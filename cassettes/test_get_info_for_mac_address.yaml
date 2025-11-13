@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: POST
     uri: https://notauri.edu/api/oauth
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 05 Aug 2024 19:44:09 GMT
+      - Thu, 13 Nov 2025 21:34:17 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -44,7 +44,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
@@ -61,25 +65,24 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/endpoint?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
   response:
     body:
-      string: '{"_embedded":{"items":[{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
-        By":"TESTING","Disabled Reason":"Still testing..."},"added_at":"Nov 15, 2023
-        14:52:34 CST","updated_at":"Aug 05, 2024 11:31:45 CDT","_links":{"self":{"stuff":"cleaned"}}}]}}'
+      string: '{"_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"},"first":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"}},"_embedded":{"items":[{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
+        15, 2023 14:52:34 CST","updated_at":"Nov 13, 2025 15:34:17 CST","_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint\/4524"}}}]}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
       Connection:
       - Keep-Alive
       Content-Length:
-      - '766'
+      - '703'
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 05 Aug 2024 19:44:09 GMT
+      - Thu, 13 Nov 2025 21:34:18 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -93,7 +96,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
@@ -110,7 +117,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/device?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
   response:
@@ -127,7 +134,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 05 Aug 2024 19:44:10 GMT
+      - Thu, 13 Nov 2025 21:34:18 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -141,7 +148,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 403
@@ -158,7 +169,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/guest?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
   response:
@@ -175,7 +186,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 05 Aug 2024 19:44:10 GMT
+      - Thu, 13 Nov 2025 21:34:18 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -189,7 +200,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 403
@@ -206,7 +221,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/session?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
   response:
@@ -223,7 +238,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 05 Aug 2024 19:44:10 GMT
+      - Thu, 13 Nov 2025 21:34:18 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -237,7 +252,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 403
@@ -254,7 +273,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/insight/endpoint/mac/123123123123
   response:
@@ -271,7 +290,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 05 Aug 2024 19:44:10 GMT
+      - Thu, 13 Nov 2025 21:34:18 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -285,7 +304,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 404

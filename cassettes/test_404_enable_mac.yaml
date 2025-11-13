@@ -14,7 +14,7 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: POST
     uri: https://notauri.edu/api/oauth
   response:
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 05 Aug 2024 16:40:44 GMT
+      - Thu, 13 Nov 2025 21:34:17 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -44,7 +44,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
@@ -61,7 +65,7 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
     uri: https://notauri.edu/api/endpoint/mac-address/deadbeef1234
   response:
@@ -78,7 +82,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 05 Aug 2024 16:40:44 GMT
+      - Thu, 13 Nov 2025 21:34:17 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -92,7 +96,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 404
