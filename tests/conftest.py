@@ -61,16 +61,16 @@ def clean_cookie(request: dict, response: dict):
 
 def clean_token(request: dict, response: dict):
     '''Clean a JSON token.'''
-    secret = "NOTASECRET"
+    message = "NOTASECRET"
     try:
         token = json.loads(response['body']['string'])
         if 'access_token' not in token:
             logger.warning(f"No access_token in token response: {token}")
-            secret = "ERROR: ACCESS TOKEN NOT FOUND"
+            message = "ERROR: ACCESS TOKEN NOT FOUND"
     except json.JSONDecodeError:
         logger.warning(f"Token response is not valid JSON: {token}")
-        secret = "ERROR: ACCESS TOKEN NOT FOUND: INVALID JSON"
-    token = {'access_token': secret}
+        message = "ERROR: ACCESS TOKEN NOT FOUND: INVALID JSON"
+    token = {'access_token': message}
     response['body']['string'] = json.dumps(token)
 
 
