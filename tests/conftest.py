@@ -10,6 +10,7 @@ import re
 from clearpass.client import APIConnection
 from vcr_cleaner import CleanYAMLSerializer
 from vcr_cleaner.filters import if_uri_endswith
+from vcr_cleaner.cleaners import clean_domains
 
 # Set up logger
 logger = logging.getLogger(__name__)
@@ -91,30 +92,6 @@ def remove_creds(request):
 
     request.body = json.dumps(data)
     return request
-
-
-def _clean_dict_hostnames(message: dict, rule: str, replacement: str):
-    '''Update the dictionary with rule matches replaced.'''
-
-    cleaned = re.sub(rule, replacement, json.dumps(message))
-
-    # Update the original dict
-    message.clear()
-    message.update(json.loads(cleaned))
-
-def clean_domains(domain: str, replacement: str='cleaned.example.edu'):
-    '''Replace anything that looks like the given domain.'''
-
-    rule = f"/[^/]+{ domain.replace('.', '\.') }"
-    rep = f"/{ replacement }"
-
-    def wrapper(request: dict, response: dict):
-         _clean_dict_hostnames(request, rule, rep)
-         _clean_dict_hostnames(response, rule, rep)
-
-    wrapper.__doc__ = clean_domains.__doc__
-
-    return wrapper
 
 
 @pytest.fixture
