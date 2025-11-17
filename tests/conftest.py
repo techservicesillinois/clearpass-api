@@ -110,27 +110,19 @@ def clean_request_response_urls(request: dict, response: dict):
     # response['body'] = _clean_dict_urls(response['body'])
 
     # TODO: Move this update and clear into the _clean_dict_urls below
-    updated = _clean_dict_urls(request)
-    request.clear()
-    request.update(updated)
-
-    updated = _clean_dict_urls(response)
-    response.clear()
-    response.update(updated)
+    _clean_dict_urls(request)
+    _clean_dict_urls(response)
     
 
 def _clean_dict_urls(message: dict):
-    json_dump = json.dumps(message)
-    re_rule = r'[^\s"\'<>/]+'
-    # Oh my, they look like this: https:\\\\/\\\\/etc.etc.illinois.edu
 
-    # HTTPS
+    json_dump = json.dumps(message)
     cleaned = re.sub(
             r"/[^/]+\.illinois\.edu", '/cleaned.example.edu', json_dump)
 
-    # breakpoint()
-
-    return json.loads(cleaned)
+    # Update the original dict
+    message.clear()
+    message.update(json.loads(cleaned))
 
 
 @pytest.fixture
