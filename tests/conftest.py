@@ -5,6 +5,7 @@ import os
 import pytest
 import vcr
 import logging
+import re
 
 from clearpass.client import APIConnection
 from vcr_cleaner import CleanYAMLSerializer
@@ -93,11 +94,45 @@ def remove_creds(request):
 
 
 def clean_uri(request: dict, response: dict):
+    '''Clean the URI'''
     if "uri" not in request.keys():
         return request
+    # TODO: Let's not use the environment for this.
     request['uri'] = request['uri'].replace(
         os.environ.get("CLEARPASS_ENDPOINT"), CASSETTE_ENDPOINT)
     return request
+
+
+def clean_request_response_urls(request: dict, response: dict):
+    '''Replace anything that looks like a URL in the request or response.'''
+    # TODO: Update this to get the whole request...then remove clean_uri above
+    # request['body'] = _clean_dict_urls(request['body'])
+    # response['body'] = _clean_dict_urls(response['body'])
+
+    request = _clean_dict_urls(request)
+
+    # TODO: Move this update and clear into the _clean_dict_urls below
+    updated = clean_dict_urls(request)
+    request.clear()
+    request.update(updated)
+
+    updated = clean_dict_urls(response)
+    response.clear()
+    response.update(updated)
+    
+
+def _clean_dict_urls(message: dict):
+    json_dump = json.dumps(message)
+    re_rule = r'[^\s"\'<>/]+'
+    # Oh my, they look like this: https:\\\\/\\\\/etc.etc.illinois.edu
+
+    # HTTPS
+    cleaned = re.sub(
+            r"\.illinois\.edu", '.example.edu', json_dump)
+
+    # breakpoint()
+
+    return json.loads(cleaned)
 
 
 @pytest.fixture
@@ -113,6 +148,7 @@ def cassette(request) -> vcr.cassette.Cassette:
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
     yaml_cleaner.register_cleaner(clean_uri)
+    yaml_cleaner.register_cleaner(clean_request_response_urls)
     yaml_cleaner.register_cleaner(if_uri_endswith("/api/oauth", clean_token))
     yaml_cleaner.register_cleaner(clean_cookie)
 
