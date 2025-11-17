@@ -5,7 +5,6 @@ import os
 import pytest
 import vcr
 import logging
-import re
 
 from clearpass.client import APIConnection
 from vcr_cleaner import CleanYAMLSerializer
