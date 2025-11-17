@@ -109,14 +109,12 @@ def clean_request_response_urls(request: dict, response: dict):
     # request['body'] = _clean_dict_urls(request['body'])
     # response['body'] = _clean_dict_urls(response['body'])
 
-    request = _clean_dict_urls(request)
-
     # TODO: Move this update and clear into the _clean_dict_urls below
-    updated = clean_dict_urls(request)
+    updated = _clean_dict_urls(request)
     request.clear()
     request.update(updated)
 
-    updated = clean_dict_urls(response)
+    updated = _clean_dict_urls(response)
     response.clear()
     response.update(updated)
     
@@ -128,7 +126,7 @@ def _clean_dict_urls(message: dict):
 
     # HTTPS
     cleaned = re.sub(
-            r"\.illinois\.edu", '.example.edu', json_dump)
+            r"/[^/]+\.illinois\.edu", '/cleaned.example.edu', json_dump)
 
     # breakpoint()
 
