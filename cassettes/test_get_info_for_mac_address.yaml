@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 17 Nov 2025 21:02:31 GMT
+      - Mon, 17 Nov 2025 22:02:34 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -71,7 +71,7 @@ interactions:
   response:
     body:
       string: '{"_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"},"first":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"}},"_embedded":{"items":[{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
-        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 15:02:29 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}]}}'
+        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 16:02:33 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}]}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -82,7 +82,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 17 Nov 2025 21:02:31 GMT
+      - Mon, 17 Nov 2025 22:02:35 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -134,7 +134,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 17 Nov 2025 21:02:32 GMT
+      - Mon, 17 Nov 2025 22:02:35 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -186,7 +186,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 17 Nov 2025 21:02:32 GMT
+      - Mon, 17 Nov 2025 22:02:36 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -238,7 +238,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 17 Nov 2025 21:02:33 GMT
+      - Mon, 17 Nov 2025 22:02:36 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -290,7 +290,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Mon, 17 Nov 2025 21:02:33 GMT
+      - Mon, 17 Nov 2025 22:02:37 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:

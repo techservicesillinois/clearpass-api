@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 17 Nov 2025 21:02:28 GMT
+      - Mon, 17 Nov 2025 22:02:32 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -72,7 +72,7 @@ interactions:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
         By":"TESTING","Disabled Reason":"Still testing..."},"added_at":"Nov 15, 2023
-        14:52:34 CST","updated_at":"Nov 17, 2025 15:02:27 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
+        14:52:34 CST","updated_at":"Nov 17, 2025 16:02:30 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -83,7 +83,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 17 Nov 2025 21:02:29 GMT
+      - Mon, 17 Nov 2025 22:02:32 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -128,7 +128,7 @@ interactions:
   response:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
-        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 15:02:29 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
+        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 16:02:33 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -139,7 +139,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 17 Nov 2025 21:02:29 GMT
+      - Mon, 17 Nov 2025 22:02:33 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:

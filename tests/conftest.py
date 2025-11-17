@@ -16,7 +16,7 @@ logger = logging.getLogger(__name__)
 
 CASSETTE_USERNAME = "JOE"
 CASSETTE_PASSWORD = "NOTAPASSWORD"  # pragma: allowlist secret
-CASSETTE_ENDPOINT = "notauri.edu"
+CASSETTE_ENDPOINT = "cleaned.example.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"  # pragma: allowlist secret
 
