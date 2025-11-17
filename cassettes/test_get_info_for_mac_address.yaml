@@ -16,7 +16,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: POST
-    uri: https://notauri.edu/api/oauth
+    uri: https://cleaned.example.edu/api/oauth
   response:
     body:
       string: '{"access_token": "NOTASECRET"}'
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Nov 2025 21:34:17 GMT
+      - Mon, 17 Nov 2025 21:02:31 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -67,11 +67,11 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/endpoint?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
+    uri: https://cleaned.example.edu/api/endpoint?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
   response:
     body:
-      string: '{"_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"},"first":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"}},"_embedded":{"items":[{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
-        15, 2023 14:52:34 CST","updated_at":"Nov 13, 2025 15:34:17 CST","_links":{"self":{"href":"https:\/\/cplab.techservices.illinois.edu\/api\/endpoint\/4524"}}}]}}'
+      string: '{"_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"},"first":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint?calculate_count=false\u0026offset=0\u0026limit=25\u0026sort=%2Bid\u0026filter=%7B%22mac_address%22%3A+%22123123123123%22%7D"}},"_embedded":{"items":[{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
+        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 15:02:29 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}]}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -82,7 +82,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Thu, 13 Nov 2025 21:34:18 GMT
+      - Mon, 17 Nov 2025 21:02:31 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -119,7 +119,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/device?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
+    uri: https://cleaned.example.edu/api/device?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
   response:
     body:
       string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Forbidden","status":403,"detail":"Access
@@ -134,7 +134,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Thu, 13 Nov 2025 21:34:18 GMT
+      - Mon, 17 Nov 2025 21:02:32 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -171,7 +171,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/guest?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
+    uri: https://cleaned.example.edu/api/guest?filter=%7B%22mac%22%3A%20%2212-31-23-12-31-23%22%7D
   response:
     body:
       string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Forbidden","status":403,"detail":"Access
@@ -186,7 +186,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Thu, 13 Nov 2025 21:34:18 GMT
+      - Mon, 17 Nov 2025 21:02:32 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -223,7 +223,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/session?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
+    uri: https://cleaned.example.edu/api/session?filter=%7B%22mac_address%22%3A%20%22123123123123%22%7D
   response:
     body:
       string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Forbidden","status":403,"detail":"Access
@@ -238,7 +238,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Thu, 13 Nov 2025 21:34:18 GMT
+      - Mon, 17 Nov 2025 21:02:33 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -275,7 +275,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/insight/endpoint/mac/123123123123
+    uri: https://cleaned.example.edu/api/insight/endpoint/mac/123123123123
   response:
     body:
       string: '{"type":"http://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html","title":"Not
@@ -290,7 +290,7 @@ interactions:
       Content-Type:
       - application/problem+json
       Date:
-      - Thu, 13 Nov 2025 21:34:18 GMT
+      - Mon, 17 Nov 2025 21:02:33 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:

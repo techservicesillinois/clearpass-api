@@ -16,7 +16,7 @@ interactions:
       User-Agent:
       - python-requests/2.32.5
     method: POST
-    uri: https://notauri.edu/api/oauth
+    uri: https://cleaned.example.edu/api/oauth
   response:
     body:
       string: '{"access_token": "NOTASECRET"}'
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Thu, 13 Nov 2025 21:34:14 GMT
+      - Mon, 17 Nov 2025 21:02:24 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
