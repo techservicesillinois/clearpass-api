@@ -93,20 +93,28 @@ def remove_creds(request):
     return request
 
 
-def clean_urls(request: dict, response: dict):
-    '''Replace anything that looks like a URL in the request or response.'''
-    _clean_dict_urls(request)
-    _clean_dict_urls(response)
-    
+def _clean_dict_hostnames(message: dict, rule: str, replacement: str):
+    '''Update the dictionary with rule matches replaced.'''
 
-def _clean_dict_urls(message: dict):
-
-    cleaned = re.sub(r"/[^/]+\.illinois\.edu",
-            '/cleaned.example.edu', json.dumps(message))
+    cleaned = re.sub(rule, replacement, json.dumps(message))
 
     # Update the original dict
     message.clear()
     message.update(json.loads(cleaned))
+
+def clean_domains(domain: str, replacement: str='cleaned.example.edu'):
+    '''Replace anything that looks like the given domain.'''
+
+    rule = f"/[^/]+{ domain.replace('.', '\.') }"
+    rep = f"/{ replacement }"
+
+    def wrapper(request: dict, response: dict):
+         _clean_dict_hostnames(request, rule, rep)
+         _clean_dict_hostnames(response, rule, rep)
+
+    wrapper.__doc__ = clean_domains.__doc__
+
+    return wrapper
 
 
 @pytest.fixture
@@ -121,7 +129,7 @@ def cassette(request) -> vcr.cassette.Cassette:
 
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
-    yaml_cleaner.register_cleaner(clean_urls)
+    yaml_cleaner.register_cleaner(clean_domains('illinois.edu'))
     yaml_cleaner.register_cleaner(if_uri_endswith("/api/oauth", clean_token))
     yaml_cleaner.register_cleaner(clean_cookie)
 
