@@ -9,7 +9,7 @@ import logging
 from clearpass.client import APIConnection
 from vcr_cleaner import CleanYAMLSerializer
 from vcr_cleaner.filters import if_uri_endswith
-from vcr_cleaner.cleaners import clean_domains
+from vcr_cleaner.cleaners.uri import clean_domains
 
 # Set up logger
 logger = logging.getLogger(__name__)
