@@ -4,18 +4,21 @@ import os
 
 import pytest
 import vcr
+import logging
 
 from clearpass.client import APIConnection
+from vcr_cleaner import CleanYAMLSerializer
+from vcr_cleaner.filters import if_uri_endswith
+from vcr_cleaner.cleaners.uri import clean_domains
 
-from vcr_cleaner import CleanYAMLSerializer, clean_if
-
+# Set up logger
+logger = logging.getLogger(__name__)
 
 CASSETTE_USERNAME = "JOE"
 CASSETTE_PASSWORD = "NOTAPASSWORD"  # pragma: allowlist secret
-CASSETTE_ENDPOINT = "notauri.edu"
+CASSETTE_ENDPOINT = "cleaned.example.edu"
 CASSETTE_CLIENT_ID = "FAKEID"
 CASSETTE_CLIENT_SECRET = "NOTASECRET"  # pragma: allowlist secret
-URL = f"https://{CASSETTE_ENDPOINT}"
 
 CLEANER_SALT = 'salty'
 CLEANER_JWT_TOKEN = {'exp': datetime.datetime(2049, 6, 25)}
@@ -57,10 +60,18 @@ def clean_cookie(request: dict, response: dict):
     response['headers']['Set-Cookie'] = 'NO-COOKIE-FOR-YOU'
 
 
-@clean_if(uri=f"{URL}/api/oauth")
 def clean_token(request: dict, response: dict):
     '''Clean a JSON token.'''
-    token = {'access_token': 'NOTASECRET'}
+    message = "NOTASECRET"
+    try:
+        token = json.loads(response['body']['string'])
+        if 'access_token' not in token:
+            logger.warning(f"No access_token in token response: {token}")
+            message = "ERROR: ACCESS TOKEN NOT FOUND"
+    except json.JSONDecodeError:
+        logger.warning(f"Token response is not valid JSON: {token}")
+        message = "ERROR: ACCESS TOKEN NOT FOUND: INVALID JSON"
+    token = {'access_token': message}
     response['body']['string'] = json.dumps(token)
 
 
@@ -82,14 +93,6 @@ def remove_creds(request):
     return request
 
 
-def clean_uri(request: dict, response: dict):
-    if "uri" not in request.keys():
-        return request
-    request['uri'] = request['uri'].replace(
-        os.environ.get("CLEARPASS_ENDPOINT"), CASSETTE_ENDPOINT)
-    return request
-
-
 @pytest.fixture
 def cassette(request) -> vcr.cassette.Cassette:
     my_vcr = vcr.VCR(
@@ -102,9 +105,8 @@ def cassette(request) -> vcr.cassette.Cassette:
 
     yaml_cleaner = CleanYAMLSerializer()
     my_vcr.register_serializer("cleanyaml", yaml_cleaner)
-    # TODO: Register cleaner functions here:
-    yaml_cleaner.register_cleaner(clean_uri)
-    yaml_cleaner.register_cleaner(clean_token)
+    yaml_cleaner.register_cleaner(clean_domains('illinois.edu'))
+    yaml_cleaner.register_cleaner(if_uri_endswith("/api/oauth", clean_token))
     yaml_cleaner.register_cleaner(clean_cookie)
 
     with my_vcr.use_cassette(f'{request.function.__name__}.yaml',

@@ -23,5 +23,3 @@ setuptools-scm
 vcrpy
 git+https://github.com/techservicesillinois/vcrpy-cleaner.git
 yq
-# Requirements are also here because pyproject.toml and pip are dumb
-requests 

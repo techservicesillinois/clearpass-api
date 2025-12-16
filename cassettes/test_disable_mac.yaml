@@ -14,9 +14,9 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: POST
-    uri: https://notauri.edu/api/oauth
+    uri: https://cleaned.example.edu/api/oauth
   response:
     body:
       string: '{"access_token": "NOTASECRET"}'
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 05 Aug 2024 16:31:44 GMT
+      - Mon, 17 Nov 2025 22:02:29 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -44,7 +44,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
@@ -61,13 +65,13 @@ interactions:
       Connection:
       - keep-alive
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: GET
-    uri: https://notauri.edu/api/endpoint/mac-address/123123123123
+    uri: https://cleaned.example.edu/api/endpoint/mac-address/123123123123
   response:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
-        15, 2023 14:52:34 CST","updated_at":"Aug 05, 2024 11:27:32 CDT","_stuff":"deleted"}'
+        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 15:02:29 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -78,7 +82,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 05 Aug 2024 16:31:45 GMT
+      - Mon, 17 Nov 2025 22:02:30 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -92,7 +96,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
@@ -114,14 +122,14 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: PUT
-    uri: https://notauri.edu/api/endpoint/4524
+    uri: https://cleaned.example.edu/api/endpoint/4524
   response:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
         By":"TESTING","Disabled Reason":"Still testing..."},"added_at":"Nov 15, 2023
-        14:52:34 CST","updated_at":"Aug 05, 2024 11:31:45 CDT","stuff":"deleted"}'
+        14:52:34 CST","updated_at":"Nov 17, 2025 16:02:30 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -132,7 +140,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 05 Aug 2024 16:31:45 GMT
+      - Mon, 17 Nov 2025 22:02:30 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -146,7 +154,11 @@ interactions:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200

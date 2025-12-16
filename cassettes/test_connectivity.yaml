@@ -14,12 +14,12 @@ interactions:
       Content-Type:
       - application/json
       User-Agent:
-      - python-requests/2.32.3
+      - python-requests/2.32.5
     method: POST
-    uri: https://notauri.edu/api/oauth
+    uri: https://cleaned.example.edu/api/oauth
   response:
     body:
-      string: '{"access_token": "CLEANED"}'
+      string: '{"access_token": "NOTASECRET"}'
     headers:
       Cache-Control:
       - no-store
@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 22 Jul 2024 20:38:25 GMT
+      - Mon, 17 Nov 2025 22:02:28 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -39,13 +39,16 @@ interactions:
       - no-cache
       Server:
       - Apache
-      Set-Cookie:
-      - GSID=3cabr753nknijgm1unpfbv7eqk; path=/; secure; HttpOnly; SameSite=Lax
+      Set-Cookie: NO-COOKIE-FOR-YOU
       Vary:
       - X-Forwarded-For
       X-Content-Type-Options:
       - nosniff
+      - nosniff
+      X-Frame-Options:
+      - SAMEORIGIN
       X-XSS-Protection:
+      - 1;mode=block
       - 1;mode=block
     status:
       code: 200
