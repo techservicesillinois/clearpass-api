@@ -40,8 +40,7 @@ dist/
 wheels
 .lint
 .requirements.venv
-requirements.in
-requirements-test.in
+requirements*.txt
 .python-version
 .venv/
 venv
