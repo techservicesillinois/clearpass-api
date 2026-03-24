@@ -30,7 +30,7 @@ interactions:
       Content-Type:
       - application/json
       Date:
-      - Mon, 17 Nov 2025 22:02:29 GMT
+      - Mon, 26 Jan 2026 17:51:42 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -71,7 +71,7 @@ interactions:
   response:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Known","randomized_mac":true,"attributes":{},"added_at":"Nov
-        15, 2023 14:52:34 CST","updated_at":"Nov 17, 2025 15:02:29 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
+        15, 2023 14:52:34 CST","updated_at":"Jan 26, 2026 11:50:00 CST","_links":{"self":{"href":"https:\/\/notauri.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -82,7 +82,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 17 Nov 2025 22:02:30 GMT
+      - Mon, 26 Jan 2026 17:51:43 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
@@ -129,7 +129,7 @@ interactions:
     body:
       string: '{"id":4524,"mac_address":"123123123123","status":"Disabled","randomized_mac":true,"attributes":{"Disabled
         By":"TESTING","Disabled Reason":"Still testing..."},"added_at":"Nov 15, 2023
-        14:52:34 CST","updated_at":"Nov 17, 2025 16:02:30 CST","_links":{"self":{"href":"https:\/\/cleaned.example.edu\/api\/endpoint\/4524"}}}'
+        14:52:34 CST","updated_at":"Jan 26, 2026 11:51:43 CST","_links":{"self":{"href":"https:\/\/notauri.edu\/api\/endpoint\/4524"}}}'
     headers:
       Cache-Control:
       - no-store, no-cache, must-revalidate
@@ -140,7 +140,7 @@ interactions:
       Content-Type:
       - application/hal+json
       Date:
-      - Mon, 17 Nov 2025 22:02:30 GMT
+      - Mon, 26 Jan 2026 17:51:43 GMT
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Keep-Alive:
