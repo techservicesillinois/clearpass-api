@@ -94,7 +94,7 @@ class APIConnection():
         try:
             self._get_access_token()
             return True
-        except Exception:
+        except TokenError:
             return False
 
     @property
