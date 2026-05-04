@@ -83,10 +83,11 @@ class APIConnection():
             verify=False,
         )
         if res.status_code != 200:
-            logger.warning("Request for authentication returned HTTP "
-                           f"{res.status_code}: {res.reason}")
+            error_message = "Request for authentication returned HTTP " \
+                            f"{res.status_code}: {res.reason}"
+            logger.warning(error_message)
             if res.status_code < 200 or res.status_code > 299:
-                raise TokenError()
+                raise TokenError(error_message)
         retjson = res.json()
         return retjson["access_token"]
 
@@ -94,7 +95,7 @@ class APIConnection():
         try:
             self._get_access_token()
             return True
-        except Exception:
+        except TokenError:
             return False
 
     @property
